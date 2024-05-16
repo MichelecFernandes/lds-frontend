@@ -17,56 +17,62 @@ export const routes: Routes = [
      component: SignInComponent,
 
    },
+
    {
     path: 'account/sign-up',
     component: SignUpComponent,
 
    },
-   {
-    path: '',
-    component: HomeComponent,
 
-   },
    {
-     path: 'main',
+     path: '',
      component: MainComponent,
+     children: [
 
-   },
-   {
-    path: 'help',
-    component: HelpComponent,
+          
+      {
+        path: '',
+        component: HomeComponent,
 
-   },
-   {
-    path: 'account/my-profile',
-    component: MyProfileComponent,
+      },
+      {
+        path: 'help',
+        component: HelpComponent,
 
-   },
-   {
-     path: 'product/create',
-     component: ProductCreateComponent,
+      },
+      {
+        path: 'account/my-profile',
+        component: MyProfileComponent,
 
-   },
-   {
-     path: 'product/list',
-     component: ProductListComponent,
+      },
+      {
+        path: 'product/create',
+        component: ProductCreateComponent,
 
-   },
-   {
-    path: 'product/edit',
-    component: ProductEditComponent,
+      },
+      {
+        path: 'product/list',
+        component: ProductListComponent,
 
-   },
-   {
-    path: 'product/detail',
-    component: ProductDetailComponent,
+      },
+      {
+        path: 'product/edit',
+        component: ProductEditComponent,
 
-   },
-   {
-    path: '**',
-    component: NotFoundComponent,
+      },
+      {
+        path: 'product/detail',
+        component: ProductDetailComponent,
 
-   }
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
 
+      }
+
+
+    ]
+  }
 
 ];

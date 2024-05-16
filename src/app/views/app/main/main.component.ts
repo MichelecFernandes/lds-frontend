@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'lds-main',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterOutlet,
+    
+  ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
