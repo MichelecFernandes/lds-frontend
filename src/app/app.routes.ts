@@ -46,24 +46,29 @@ export const routes: Routes = [
 
       },
       {
-        path: 'product/create',
-        component: ProductCreateComponent,
-
-      },
-      {
-        path: 'product/list',
-        component: ProductListComponent,
-
-      },
-      {
-        path: 'product/edit',
-        component: ProductEditComponent,
-
-      },
-      {
-        path: 'product/detail',
-        component: ProductDetailComponent,
-
+        path: 'product',
+        children: [
+          {
+            path: 'create',
+            component: ProductCreateComponent,
+    
+          },
+          {
+            path: 'list',
+            component: ProductListComponent,
+    
+          },
+          {
+            path: 'edit',
+            component: ProductEditComponent,
+    
+          },
+          {
+            path: 'detail',
+            component: ProductDetailComponent,
+    
+          },
+        ]
       },
       {
         path: '**',

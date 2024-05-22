@@ -11,6 +11,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import * as fontawesome from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'lds-main',
@@ -34,5 +36,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
+  faCoffee = fontawesome.faHeartBroken;
 
 }
