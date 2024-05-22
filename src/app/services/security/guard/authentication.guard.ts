@@ -12,10 +12,10 @@ CanActivateFn = (route, state) => {
   }
 
   if(router.url === 'account/sign-up'){
-    router.navigate(['accoutn/sign-in']);
+    router.navigate(['account/sign-in']);
     return false;
   }
 
-  router.navigate(['accoutn/sign-in']);
+  router.navigate(['account/sign-in']);
   return false;
 };
