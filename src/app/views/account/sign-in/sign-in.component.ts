@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
-import { FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -17,8 +18,9 @@ import { FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
+  // email = new FormControl(null, Validators.email);
   email = new FormControl(null);
-  password = new FormControl(null);
+  password = new FormControl(null, [Validators.minLength(1), Validators.maxLength(10)]);
 
   isLoginIncorrect = true;
 
@@ -30,4 +32,9 @@ export class SignInComponent {
 
   }
 
+
+  isFormInvalid (){
+    let isValid = this.email.valid && this.password.valid;
+    return isValid ? false : true;
+  }
 }
