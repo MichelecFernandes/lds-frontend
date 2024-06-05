@@ -4,6 +4,8 @@ import { MatButtonModule} from '@angular/material/button';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { UserCredential } from '../../../domain/dto/user-credential';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 
 
@@ -27,18 +29,42 @@ export class SignInComponent {
   isLoginIncorrect = false;
 
 
-  constructor(private router: Router){
+  constructor(private router: Router, private authenticationService: AuthenticationService){
 
 
   }
 
   login() {
-    let emailField = this.email.value
-    let passwordField = this.password.value
-    console.log(`email digitado: ${emailField}`);
-    console.log(`senha digitado: ${passwordField}`);
 
-    this.router.navigate(['/']);
+    // let emailField = this.email.value
+    // let passwordField = this.password.value
+
+    let credential: UserCredential = {
+      email: this.email.value!,
+      password: this.password.value!
+    };
+
+    // console.log(`email digitado: ${credential.email}`);
+    // console.log(`senha digitado: ${credential.password}`);
+    console.log(credential);
+
+    this.authenticationService
+    .authenticate(credential)
+    .subscribe(
+      {
+        next: (value) => {
+          console.log(value);
+          this.router.navigate(['/']);
+
+        },
+        error: (err) => {
+          console.error(err);
+
+        }
+      }
+    );
+
+    
 
   }
 

@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { UserCredential } from '../domain/dto/user-credential';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
 
   }
 
-  authentication(credential: UserCredential) {
+  authenticate(credential: UserCredential): Observable<any> {
     console.log (`tryin to authenticate...`);
     console.log (credential);
+
+    return this.http.get('http://localhost:3000/user/1');
 
   }
 
