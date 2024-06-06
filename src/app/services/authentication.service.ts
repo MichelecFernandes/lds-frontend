@@ -21,6 +21,21 @@ export class AuthenticationService {
   }
 
   logout() {
+    localStorage.clear();
+
+  }
+  isAutheticated(): boolean{
+    let token = localStorage.getItem('token');
+
+    if(token != null){
+      return true;
+    }
+    return false;
+  }
+
+  addCredentialsToLocalStorage(email: string){
+    localStorage.setItem('email', email);
+    localStorage.setItem('token', new Date().toLocaleTimeString());
 
   }
 

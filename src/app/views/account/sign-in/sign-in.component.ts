@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -21,7 +21,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   // email = new FormControl(null, Validators.email);
   email = new FormControl(null);
   password = new FormControl(null, [Validators.minLength(1), Validators.maxLength(10)]);
@@ -32,6 +32,19 @@ export class SignInComponent {
   constructor(private router: Router, private authenticationService: AuthenticationService){
 
 
+  }
+
+  
+  ngOnInit(): void {
+    this.loginIfCredentialsIsValid();
+    
+  }
+
+  loginIfCredentialsIsValid(){
+    if(this.authenticationService.isAutheticated()){
+      this.router.navigate(['/']);
+      return;
+    }
   }
 
   login() {
@@ -54,6 +67,13 @@ export class SignInComponent {
       {
         next: (value) => {
           console.log(value);
+
+          if(!value){
+            return;
+          }
+
+          this.authenticationService.addCredentialsToLocalStorage(credential.email);
+
           this.router.navigate(['/']);
 
         },
