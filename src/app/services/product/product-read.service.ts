@@ -18,15 +18,9 @@ export class ProductReadService {
 
   findByName(name: string): Promise<Products[]> {
     return firstValueFrom(this.http.get<Products[]>(`http://localhost:3000/product?name=${name}`));
-
-    
-
-
   }
   findAll(): Promise<Products[]>{
-    return firstValueFrom(this.http.get<Products[]>('http://localhost:3000/product'));
-    
-
+    return firstValueFrom(this.http.get<Products[]>('http://localhost:3000/product'));  
   }
   
 
