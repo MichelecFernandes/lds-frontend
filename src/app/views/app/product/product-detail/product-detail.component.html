@@ -13,11 +13,11 @@
     <div class="form-row">
         <div class="form-group col-12 mt-2">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" placeholder="Nome" readonly value="produto 100">
+            <input type="text" class="form-control" id="name" placeholder="Nome" readonly value="{{productInformation?.name}}">
         </div>
         <div class="form-group col-12 mt-2">
             <label for="price">Preço</label>
-            <input type="text" class="form-control" id="price" placeholder="Preço" readonly value="R$100.00">
+            <input type="text" class="form-control" id="price" placeholder="Preço" readonly value="{{productInformation?.price}}">
         </div>
         <div class="col-12 text-end mt-2">
             <button class="btn btn-secondary col-2 me-4" href="/product/list">Voltar</button>

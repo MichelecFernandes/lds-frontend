@@ -60,12 +60,12 @@ export const routes: Routes = [
     
           },
           {
-            path: 'edit',
+            path: 'edit/:id',
             component: ProductEditComponent,
     
           },
           {
-            path: 'detail',
+            path: 'detail/:id',
             component: ProductDetailComponent,
     
           },
