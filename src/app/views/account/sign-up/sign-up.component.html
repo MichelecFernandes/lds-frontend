@@ -1,24 +1,47 @@
 <div class="base-form">
-    <form class="form mat-elevation-z4">
+    <form class="form mat-elevation-z4" [formGroup]="form">
         <h2 class="text-center">Crie sua conta!</h2>
         <mat-form-field>
             <mat-label>Nome completo</mat-label>
-            <input matInput placeholder="Nome completo" required="" [formControl]="fullName">
+            <input matInput placeholder="Nome completo" required="" formControlName="fullName">
         </mat-form-field>
+        @if(form.controls['fullName'].hasError('minlength')) {
+            <p class="tex-danger">Nome deve ter no mínmo {{fullNameMinLength}} caracteres.</p>
+
+        }
+        @else if (form.controls['fullName'].hasError('maxlength')) {
+            <p class="tex-danger">Nome deve ter no maximo {{fullNameMaxLength}} caracteres.</p>
+        }
+
 
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" required="" [formControl]="email">
+            <input matInput placeholder="Email" required="" formControlName="email">
         </mat-form-field>
+        @if(form.controls['fullName'].hasError('minlength')) {
+            <p class="tex-danger">Email deve ter no mínmo {{fullNameMinLength}} caracteres.</p>
+
+        }
+        @else if (form.controls['fullName'].hasError('maxlength')) {
+            <p class="tex-danger">Email deve ter no maximo {{fullNameMaxLength}} caracteres.</p>
+        }
+
 
         <mat-form-field>
             <mat-label>Senha</mat-label>
-            <input matInput type="password" placeholder="Senha" maxlength="10" [formControl]="password">
+            <input matInput type="password" placeholder="Senha" maxlength="10" formControlName="password">
         </mat-form-field>
+        @if(form.controls['fullName'].hasError('minlength')) {
+            <p class="tex-danger">Password deve ter no mínmo {{fullNameMinLength}} caracteres.</p>
+
+        }
+        @else if (form.controls['fullName'].hasError('maxlength')) {
+            <p class="tex-danger">Password deve ter no maximo {{fullNameMaxLength}} caracteres.</p>
+        }
 
         <mat-form-field>
             <mat-label>Repita a senha</mat-label>
-            <input matInput type="password" placeholder="Senha" [formControl]="repeatPassword">
+            <input matInput type="password" placeholder="Senha" formControlName="repeatPassword">
         </mat-form-field>
 
         <div class="text-center">
