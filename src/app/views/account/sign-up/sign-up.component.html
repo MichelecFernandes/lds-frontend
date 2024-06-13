@@ -18,31 +18,37 @@
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" required="" formControlName="email">
         </mat-form-field>
-        @if(form.controls['fullName'].hasError('minlength')) {
-            <p class="tex-danger">Email deve ter no mínmo {{fullNameMinLength}} caracteres.</p>
+        @if(form.controls['email'].hasError('email')) {
+            <p class="tex-danger">Email invalido.</p>
 
         }
-        @else if (form.controls['fullName'].hasError('maxlength')) {
-            <p class="tex-danger">Email deve ter no maximo {{fullNameMaxLength}} caracteres.</p>
-        }
-
 
         <mat-form-field>
             <mat-label>Senha</mat-label>
             <input matInput type="password" placeholder="Senha" maxlength="10" formControlName="password">
         </mat-form-field>
-        @if(form.controls['fullName'].hasError('minlength')) {
-            <p class="tex-danger">Password deve ter no mínmo {{fullNameMinLength}} caracteres.</p>
+        @if(form.controls['password'].hasError('minlength')) {
+            <p class="tex-danger">Password deve ter no mínimo {{passwordMinLength}} caracteres.</p>
 
         }
-        @else if (form.controls['fullName'].hasError('maxlength')) {
-            <p class="tex-danger">Password deve ter no maximo {{fullNameMaxLength}} caracteres.</p>
+        @else if (form.controls['password'].hasError('maxlength')) {
+            <p class="tex-danger">Password deve ter no maximo {{passwordMaxLength}} caracteres.</p>
         }
 
         <mat-form-field>
             <mat-label>Repita a senha</mat-label>
             <input matInput type="password" placeholder="Senha" formControlName="repeatPassword">
         </mat-form-field>
+        @if(form.controls['repeatPassword'].hasError('minlength')) {
+            <p class="tex-danger">Senha deve ter no mínimo {{passwordMinLength}} caracteres.</p>
+
+        }
+        @else if (form.controls['repeatPassword'].hasError('maxlength')) {
+            <p class="tex-danger">Senha deve ter no maximo {{passwordMaxLength}} caracteres.</p>
+        }
+        @else if (!arePasswordIsValid()) {
+            <p class="tex-danger">As senhas não são iguais</p>
+        }
 
         <div class="text-center">
             <button mat-raised-button color="primary" [disabled]="isFormInvalid()" (click)="createAccount()">Criar</button>
