@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as fontawesome from '@fortawesome/free-solid-svg-icons';
 import { ProductReadService } from '../../../../services/product/product-read.service';
 import { ProductDeleteService } from '../../../../services/product/product-delete.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'lds-product-list',
@@ -20,7 +21,7 @@ export class ProductListComponent implements OnInit {
 
   products: Products[] = [];
 
-  constructor(private productReadService: ProductReadService, private productDeleteService: ProductDeleteService){
+  constructor(private productReadService: ProductReadService, private productDeleteService: ProductDeleteService, private toastrService: ToastrService){
 
   }
 
@@ -35,8 +36,19 @@ export class ProductListComponent implements OnInit {
   }
 
   async deleteProduct(productId: string){
-    console.log('iniciando a remocao do produto' + productId);
-    await this.productDeleteService.delete(productId);
+    try {
+      // Erro comentado com o proposito de cair no catch(error)
+      // throw new Error('Opa, bão?');
+      console.log('iniciando a remocao do produto' + productId);
+      await this.productDeleteService.delete(productId);
+      this.toastrService.success('Item removido com sucesso');
+      await this.loadProducts();
+      
+    } catch (error) {
+      this.toastrService.error('Nao foi possivel remover o produto');
+      
+    }
+
 
   }
 
