@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as fontawesome from '@fortawesome/free-solid-svg-icons';
 import { ProductReadService } from '../../../../services/product/product-read.service';
+import { ProductDeleteService } from '../../../../services/product/product-delete.service';
 
 @Component({
   selector: 'lds-product-list',
@@ -19,7 +20,7 @@ export class ProductListComponent implements OnInit {
 
   products: Products[] = [];
 
-  constructor(private productReadService: ProductReadService){
+  constructor(private productReadService: ProductReadService, private productDeleteService: ProductDeleteService){
 
   }
 
@@ -32,6 +33,15 @@ export class ProductListComponent implements OnInit {
     this.products = await this.productReadService.findAll();
 
   }
+
+  async deleteProduct(productId: string){
+    console.log('iniciando a remocao do produto' + productId);
+    await this.productDeleteService.delete(productId);
+
+  }
+
+
+
 
   // products: Products[] = [
   //   {
