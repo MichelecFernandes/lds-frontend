@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductReadService } from '../../../../services/product/product-read.service';
 import { Products } from '../product-list/product-list.component';
 
 @Component({
   selector: 'lds-product-detail',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterModule
+  ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
