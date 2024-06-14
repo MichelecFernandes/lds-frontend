@@ -9,7 +9,7 @@
 <h1>Editar produto</h1>
 <hr>
 
-<form class="form">
+<form class="form" method="post" (ngSubmit)="update()">
     <div class="form-row">
         <div class="form-group col-12 mt-2">
             <label for="name">Nome</label>
@@ -22,7 +22,7 @@
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">
                 <a class="btn btn-secondary col-2 me-4" href="/product/list">Voltar</a>
-                <button class="btn btn-primary col-2">Atualizar</button>
+                <button class="btn btn-primary col-2" (click)="update()">Atualizar</button>
             </div>
         </div>
     </div>
