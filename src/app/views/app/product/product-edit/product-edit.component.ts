@@ -29,8 +29,14 @@ export class ProductEditComponent implements OnInit {
   priceMinValue: number = 1;
   priceMaxValue: number = 500;
 
-  constructor(private activateRouter: ActivatedRoute, private productReadService: ProductReadService, private productUpdateService: ProductUpdateService, private toastrService: ToastrService, private router: Router, private formBuilder: FormBuilder){
+  constructor(private activateRouter: ActivatedRoute,
+    private productReadService: ProductReadService,
+    private productUpdateService: ProductUpdateService, 
+    private toastrService: ToastrService, 
+    private router: Router, 
+    private formBuilder: FormBuilder){
     this.initializeForm();
+
   }
   
   initializeForm() {
@@ -54,7 +60,7 @@ export class ProductEditComponent implements OnInit {
     this.form.controls['price'].setValue(product.price);
   }
 
-  async update(){
+  async update() {
 
     try {
       // let product: Products = {
@@ -75,11 +81,11 @@ export class ProductEditComponent implements OnInit {
       
     } catch (error) {
       this.toastrService.error('Erro. Produto nao atualizado.');
-      
     }
-
-
   }
 
-
+  validateFields() {
+    return this.form.controls['name'].valid
+      && this.form.controls['price'].valid;
+  }
 }

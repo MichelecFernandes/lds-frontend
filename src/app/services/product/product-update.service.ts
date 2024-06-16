@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Products } from '../../views/app/product/product-list/product-list.component';
+
 import { firstValueFrom } from 'rxjs';
 import { Product } from '../../domain/model/product.model';
 
@@ -14,7 +14,7 @@ export class ProductUpdateService {
   //Post: envia valores para algum endpoint(geralmente para criar algo)
   //Put: envia valores para algum endpoint(geralmente para atualizar)
   //Delete: envia um determinado parametro de forma que o item seja removido
-  //Patch? envia valores para algum endpoint(tambem para atualizar, porem parte do objeto]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]])
+  //Patch? envia valores para algum endpoint(tambem para atualizar, porem parte do objeto
 
 
   constructor(private http: HttpClient) { }
