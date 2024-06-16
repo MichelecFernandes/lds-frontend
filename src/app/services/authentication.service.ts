@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserCredential } from '../domain/dto/user-credential';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,19 @@ export class AuthenticationService {
 
   }
 
-  authenticate(credential: UserCredential): Observable<any> {
+  async authenticate(credential: UserCredential){
     console.log (`tryin to authenticate...`);
     console.log (credential);
 
-    return this.http.get('http://localhost:3000/user/1');
-
+    let apiResponse = await firstValueFrom(this.http.get<UserCredential[]>(`http://localhost:3000/user?email=${credential.email}&password=${credential.password}`));
+    console.log(apiResponse);
+    if (apiResponse == null || apiResponse.length != 1) {
+      throw new Error('dados invalidos');
+    }
+    return true;
   }
+
+
 
   logout() {
     localStorage.clear();
