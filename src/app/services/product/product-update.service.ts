@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Products } from '../../views/app/product/product-list/product-list.component';
 import { firstValueFrom } from 'rxjs';
+import { Product } from '../../domain/model/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class ProductUpdateService {
 
   constructor(private http: HttpClient) { }
 
-  async update(product: Products){
+  async update(product: Product) {
+    console.log(`atualizando o produto...`);
+    console.log(product);
     return await firstValueFrom(this.http.put(`http://localhost:3000/product/${product.id}`, product));
 
   }

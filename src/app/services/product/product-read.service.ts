@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { Products } from '../../views/app/product/product-list/product-list.component';
+import { Product } from '../../domain/model/product.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,15 @@ export class ProductReadService {
 
   //CRUD
 
-  findById(id: string): Promise<Products> {
-    return firstValueFrom(this.http.get<Products>(`http://localhost:3000/product/${id}`));
+  findById(id: string): Promise<Product> {
+    return firstValueFrom(this.http.get<Product>(`http://localhost:3000/product/${id}`));
   }
 
-  findByName(name: string): Promise<Products[]> {
-    return firstValueFrom(this.http.get<Products[]>(`http://localhost:3000/product?name=${name}`));
+  findByName(name: string): Promise<Product[]> {
+    return firstValueFrom(this.http.get<Product[]>(`http://localhost:3000/product?name=${name}`));
   }
-  findAll(): Promise<Products[]>{
-    return firstValueFrom(this.http.get<Products[]>('http://localhost:3000/product'));  
+  findAll(): Promise<Product[]>{
+    return firstValueFrom(this.http.get<Product[]>('http://localhost:3000/product'));  
   }
   
 
