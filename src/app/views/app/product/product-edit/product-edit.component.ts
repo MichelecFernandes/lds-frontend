@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductReadService } from '../../../../services/product/product-read.service';
-import { Products } from '../product-list/product-list.component';
 import { ProductUpdateService } from '../../../../services/product/product-update.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';

@@ -5,6 +5,7 @@ import * as fontawesome from '@fortawesome/free-solid-svg-icons';
 import { ProductReadService } from '../../../../services/product/product-read.service';
 import { ProductDeleteService } from '../../../../services/product/product-delete.service';
 import { ToastrService } from 'ngx-toastr';
+import { Product } from '../../../../domain/model/product.model';
 
 @Component({
   selector: 'lds-product-list',
@@ -19,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductListComponent implements OnInit {
   fa = fontawesome;
 
-  products: Products[] = [];
+  products: Product[] = [];
 
   constructor(private productReadService: ProductReadService, private productDeleteService: ProductDeleteService, private toastrService: ToastrService){
 
@@ -35,13 +36,13 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  async deleteProduct(productId: string){
+  async deleteProduct(productId: string) {
     try {
       // Erro comentado com o proposito de cair no catch(error)
       // throw new Error('Opa, bão?');
       console.log('iniciando a remocao do produto' + productId);
       await this.productDeleteService.delete(productId);
-      this.toastrService.success('Item removido com sucesso');
+      this.toastrService.success('Produto removido com sucesso');
       await this.loadProducts();
       
     } catch (error) {
@@ -101,10 +102,4 @@ export class ProductListComponent implements OnInit {
 
   
 
-}
-
-export interface Products {
-  id: number;
-  name: String;
-  price: number;
 }
