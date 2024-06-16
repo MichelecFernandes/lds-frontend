@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as fontawesome from '@fortawesome/free-solid-svg-icons';
 import { ProductReadService } from '../../../../services/product/product-read.service';
 import { ProductDeleteService } from '../../../../services/product/product-delete.service';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'lds-product-list',
