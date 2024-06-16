@@ -10,7 +10,6 @@
             <input matInput type="password" placeholder="Senha" maxlength="10" required [formControl]="password">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="login()" [disabled]="isFormInvalid()">Login</button>
-
         @if (isLoginIncorrect){
             <p class="text-danger mt-2"> Email e/ou senha incorretos</p>
         }
