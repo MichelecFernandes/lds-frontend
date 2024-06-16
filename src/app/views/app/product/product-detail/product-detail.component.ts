@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductReadService } from '../../../../services/product/product-read.service';
-import { Products } from '../product-list/product-list.component';
+import { Product } from '../../../../domain/model/product.model';
 
 @Component({
   selector: 'lds-product-detail',
@@ -15,7 +15,7 @@ import { Products } from '../product-list/product-list.component';
 export class ProductDetailComponent  implements OnInit{
   // ?fala que a variavel pode ser nula ou ter um nao
   // ! faala que é obrigatorio ter o valor
-  productInformation?: Products;
+  productInformation?: Product;
 
   constructor(private route: ActivatedRoute, private productReadService: ProductReadService) {
 
