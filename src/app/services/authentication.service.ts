@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserCredential } from '../domain/dto/user-credential';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -13,19 +13,34 @@ export class AuthenticationService {
 
   }
 
-  async authenticate(credential: UserCredential){
+  //Modelo antigo - 18/11/2024
+  // async authenticate(credential: UserCredential){
+  //   console.log (`tryin to authenticate...`);
+  //   console.log (credential);
+  //   let apiResponse = await firstValueFrom(this.http.get<UserCredential[]>(`${environment.api_endpoint}/user?email=${credential.email}&password=${credential.password}`));
+  //   console.log(apiResponse);
+  //   if (apiResponse == null || apiResponse.length != 1) {
+  //     throw new Error('dados invalidos');
+  //   }
+  //   return true;
+  // }
+
+  authenticate(credential: UserCredential): Observable<any>{
     console.log (`tryin to authenticate...`);
     console.log (credential);
 
-    let apiResponse = await firstValueFrom(this.http.get<UserCredential[]>(`${environment.api_endpoint}/user?email=${credential.email}&password=${credential.password}`));
-    console.log(apiResponse);
-    if (apiResponse == null || apiResponse.length != 1) {
-      throw new Error('dados invalidos');
-    }
-    return true;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const body = {
+      email: credential.email,
+      password: credential.password,
+    };
+
+
+    return this.http.post<any>(`${environment.authentication_api_endpoint}/authenticate`, body, { headers })
   }
-
-
 
   logout() {
     localStorage.clear();

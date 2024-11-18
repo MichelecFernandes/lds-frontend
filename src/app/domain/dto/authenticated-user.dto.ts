@@ -7,5 +7,5 @@ export interface AuthenticatedUser {
 
 export enum UserRole{
    ADMINISTRATOR = 'ADMINISTRATOR',
-   USER = 'USER',    
+   USER = 'USER'    
 }
