@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { firstValueFrom } from 'rxjs';
 import { Product } from '../../domain/model/product.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ProductUpdateService {
   async update(product: Product) {
     console.log(`atualizando o produto...`);
     console.log(product);
-    return await firstValueFrom(this.http.put(`http://localhost:3000/product/${product.id}`, product));
+    return await firstValueFrom(this.http.put(`${environment.api_endpoint}/product/${product.id}`, product));
 
   }
 }
