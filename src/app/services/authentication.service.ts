@@ -3,6 +3,7 @@ import { UserCredential } from '../domain/dto/user-credential';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { AuthenticatedUser } from '../domain/dto/authenticated-user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -55,10 +56,17 @@ export class AuthenticationService {
     return false;
   }
 
-  addCredentialsToLocalStorage(email: string){
-    localStorage.setItem('email', email);
-    localStorage.setItem('token', new Date().toLocaleTimeString());
+  // addCredentialsToLocalStorage(email: string){
+  //   localStorage.setItem('email', email);
+  //   localStorage.setItem('token', new Date().toLocaleTimeString());
+  // }
 
+  addCredentialsToLocalStorage(authenticatedUser: AuthenticatedUser){
+    localStorage.setItem('email', authenticatedUser.email);
+    localStorage.setItem('fullName', authenticatedUser.fullName);
+    localStorage.setItem('role', authenticatedUser.role);
+    localStorage.setItem('token', authenticatedUser.token);
+  
   }
 
 }
