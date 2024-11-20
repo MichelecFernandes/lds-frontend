@@ -3,7 +3,7 @@ import { UserCredential } from '../domain/dto/user-credential';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthenticatedUser } from '../domain/dto/authenticated-user.dto';
+import { AuthenticatedUser, UserRole } from '../domain/dto/authenticated-user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +68,30 @@ export class AuthenticationService {
     localStorage.setItem('token', authenticatedUser.token);
   
   }
+
+  getAuthenticatedUser(): AuthenticatedUser{
+    let email = localStorage.getItem('email');
+    let fullName = localStorage.getItem('fullName');
+    let token = localStorage.getItem('token');
+    let role = localStorage.getItem('role');
+
+    if(email == null
+      || fullName == null
+      || token == null
+      || role == null){
+      throw new Error('Dados no cache estao invalidos');
+  
+    }
+  
+    let user: AuthenticatedUser = {
+      email: email,
+      fullName: fullName,
+      token: token,
+      role: role as UserRole,
+    };
+
+    return user;
+  }
+
 
 }
