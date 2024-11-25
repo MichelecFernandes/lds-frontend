@@ -10,15 +10,23 @@
 <hr>
 
 <h2>Dados cadastrais</h2>
-<form class="form">
+<form class="form" [formGroup]="dataForm" (ngSubmit)="updateInformation()">
     <div class="form-row">
         <div class="form-group col-12 mt-2">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" readonly>
+            <input type="text" class="form-control" id="email" readonly value="{{ email }}">
         </div>
         <div class="form-group col-12 mt-2">
             <label for="fullName">Nome completo</label>
-            <input type="text" class="form-control mb-2" id="fullName" placeholder="Nome completo" required="">
+            <input type="text" class="form-control mb-2" 
+            id="fullName" 
+            formControlName="fullName"
+            placeholder="Nome completo" 
+            required="">
+
+            @if(dataForm.controls['fullName'].hasError('required')){
+                <p class="text-danger">Campo obrigatório</p>
+            }
         </div>
         <div class="col-12 text-end mt-2">
             <div class="col-12 text-end mt-2">

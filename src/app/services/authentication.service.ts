@@ -3,7 +3,9 @@ import { UserCredential } from '../domain/dto/user-credential';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthenticatedUser, UserRole } from '../domain/dto/authenticated-user.dto';
+import { AuthenticatedUser } from '../domain/dto/authenticated-user.dto';
+import { User } from '../domain/model/user.model';
+import { UserRole } from '../domain/model/user-role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -93,5 +95,19 @@ export class AuthenticationService {
     return user;
   }
 
+  getUserFromAuthentication(): User{
+    let authenticatedUser = this.getAuthenticatedUser();
+    let user: User = {
+      email: authenticatedUser.email,
+      fullName: authenticatedUser.fullName,
+      password: '',
+      role: authenticatedUser.role
+     
+    };
+
+    return user;
+    
+    
+  }
 
 }

@@ -16,6 +16,18 @@
                 <li>git merge</li>
                 <li>Resolução de conflitos</li>
             </ul>
+            <ul *ngIf="user">
+                <li *ngIf="user.role === 'ADMINISTRATOR'">
+                    <button (click)="showMessage('sou o administrador')">Botao restrito ao ADMINISTRADOR</button>
+                </li>
+                <li *ngIf="user.role === 'USER'">
+                    <span>Conteudo que apenas o USER visualiza</span>
+
+                </li>
+                <li *ngIf="user.role === 'ADMINISTRATOR' || user.role === 'USER'">
+                    <span>Conteudo que ADMINISTRADOR e USER visualizam</span>
+                </li>
+            </ul>
         </li>
     </ul>
 </article>

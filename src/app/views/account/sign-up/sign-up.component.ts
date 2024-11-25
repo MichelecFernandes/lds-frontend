@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { User } from '../../../domain/model/user.model';
 import { UserCreateService } from '../../../services/user/user-create.service';
 import { Router } from '@angular/router';
+import { UserRole } from '../../../domain/model/user-role.model';
 
 
 @Component({
@@ -92,7 +93,8 @@ export class SignUpComponent implements OnInit{
     let user: User = {
       fullName: this.form.controls['fullName'].value,
       email: this.form.controls['email'].value,
-      password: this.form.controls['password'].value
+      password: this.form.controls['password'].value,
+      role: UserRole.USER
       
     };
     this.createUserService.create(user).subscribe({
